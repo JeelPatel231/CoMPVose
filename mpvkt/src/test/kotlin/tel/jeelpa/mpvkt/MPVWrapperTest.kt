@@ -1,21 +1,18 @@
 package tel.jeelpa.mpvkt
 
-import com.sun.jna.Pointer
-import com.sun.jna.ptr.IntByReference
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import tel.jeelpa.mpvkt.native.MPV
-import tel.jeelpa.mpvkt.native.consumeString
+import tel.jeelpa.mpvkt.impl.MPVThinAbstraction
+import tel.jeelpa.mpvkt.native.getNativeMPV
 
 
 class MPVWrapperTest {
     companion object {
-        val mpv = MPVWrapper()
+        val mpv = MPVThinAbstraction().wrapper().apply { init() }
         @JvmStatic
         fun main(args: Array<String>): Unit = runBlocking {
-            val videoUrl = "https://raw.githubusercontent.com/rafaelreis-hotmart/Audio-Sample-files/refs/heads/master/sample.mp3"
+            val videoUrl = Constants.videoUrl
 
             val mediaItem = object : MediaItem {
                 override fun getUrl(): String = videoUrl

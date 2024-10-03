@@ -1,20 +1,16 @@
 package tel.jeelpa.mpvkt
 
-import com.sun.jna.Callback
-import com.sun.jna.Memory
-import com.sun.jna.Pointer
-import com.sun.jna.ptr.IntByReference
 import tel.jeelpa.mpvkt.native.*
 
 
 class MPVTest {
     companion object {
-        val MPV_INSTANCE = MPV.INSTANCE
+        val MPV_INSTANCE = getNativeMPV()
         val MPV_POINTER = MPV_INSTANCE.mpv_create()
 
         @JvmStatic
         fun main(args: Array<String>) {
-            val videoUrl = "https://raw.githubusercontent.com/rafaelreis-hotmart/Audio-Sample-files/refs/heads/master/sample.mp3"
+            val videoUrl = Constants.videoUrl
 
             val t = Thread {
                 while (true) {

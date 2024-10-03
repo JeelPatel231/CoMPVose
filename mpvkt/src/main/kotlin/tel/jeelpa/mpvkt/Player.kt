@@ -20,4 +20,5 @@ interface Player {
 
     fun getEventEmitter(): PlayerEventEmitter
     fun isPlaying(): Boolean
+    fun getCurrentPosition(): String
 }

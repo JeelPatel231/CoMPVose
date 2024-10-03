@@ -7,6 +7,7 @@
     libGL
     libGLU
     mpv
+    yt-dlp
 
     vulkan-tools
     vulkan-loader
@@ -14,7 +15,13 @@
 
   multiPkgs = pkgs: (with pkgs; [
   ]);
-  runScript = "bash";
-}).env
 
-# LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib64 LC_NUMERIC=C ./gradlew run
+  runScript = "bash";
+
+  profile = ''
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib64
+    export LC_NUMERIC=C
+    export JAVA_HOME=${pkgs.jdk21}/lib/openjdk
+  '';
+
+}).env
